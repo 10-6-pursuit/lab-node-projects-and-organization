@@ -70,9 +70,10 @@ function findAWordWithLetter(letter) {
 
 // find a word with more than one of the matching letter
 function findAWordWithLetters(letter) {
-    return wordJSON.find(word => word.split("").filter(let => let !== letter).length < 4)
+    return wordJSON.find(word => word.split("").filter(let => let === letter).length > 1)
 }
 
+// console.log(findAWordWithLetters(process.argv[2]))
 // find a word with no matching letters
 function findWordWithNoLetter(letter) {
     return wordJSON.find(word => !word.includes(letter))
@@ -112,17 +113,20 @@ function findWordsWithMatchingLettersInPosition(letter, position) {
 
 // Write a function lettersMatch that lets you input up to 5 letters in any order and returns the words that match the criteria (don't worry about solving for duplicate letters).
 // node index.js aeiou
-function lettersMatch(letters) {
-    return wordJSON.filter(word => {
-        for (let char of letters) {
-            return word.includes(char)
-        }
-    })
-}
 
-console.log(lettersMatch(process.argv[2]))
 // Write a function letttersExactMatch that lets you input a five-character string. Put letters with the exact placement in their place, and put a placeholder like . or _ for unknown letters.
 // node index.js exactly a_ie_
+
+// function letttersExactMatch (str) {
+//     let answer = []
+//     for (let i = 0; i < str.length; i++) {
+//         if (str[i].match(/[a-z]/g)) {
+//             answer = answer.concat(findWordsWithMatchingLettersInPosition(str[i],i + 1)) 
+//         }
+//     }
+//     return answer
+// }
+// console.log(letttersExactMatch(process.argv[2]))
 
 // Update the function lettersMatch to handle duplicate letters
 
