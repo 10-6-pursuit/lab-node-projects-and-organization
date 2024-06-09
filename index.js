@@ -117,15 +117,19 @@ function findWordsWithMatchingLettersInPosition(letter, position) {
 // Write a function letttersExactMatch that lets you input a five-character string. Put letters with the exact placement in their place, and put a placeholder like . or _ for unknown letters.
 // node index.js exactly a_ie_
 
-// function letttersExactMatch (str) {
-//     let answer = []
-//     for (let i = 0; i < str.length; i++) {
-//         if (str[i].match(/[a-z]/g)) {
-//             answer = answer.concat(findWordsWithMatchingLettersInPosition(str[i],i + 1)) 
-//         }
-//     }
-//     return answer
-// }
+function letttersExactMatch (str) {
+    let answer = []
+    for (let i = 0; i < str.length; i++) {
+        if (str[i].match(/[a-z]/)) {
+            if (answer.length < 1) {
+                answer = answer.concat(wordJSON.filter(word => word[i] === str[i]))
+            } else {
+                answer = answer.filter(word => word[i] === str[i])
+            }
+        }
+    }
+    return answer
+}
 // console.log(letttersExactMatch(process.argv[2]))
 
 // Update the function lettersMatch to handle duplicate letters
