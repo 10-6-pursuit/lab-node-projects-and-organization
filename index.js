@@ -151,6 +151,111 @@ const findWordWithNoLetters = (letter) => {
 
 //console.log(findWordsWithLetter(process.argv[2]));
 
+//Bonus
+//Write a function lettersMatch that lets you input up to 5 letters in any order and returns the words that match the criteria (don't worry about solving for duplicate letters). node index.js aeiou
+
+// const lettersMatch = (letters) => {
+//     return wordsJSON.filter(word => {
+//         for (const letter of letters) {
+//             if (!word.includes(letter)) {
+//                 return false;
+//             }
+//         }
+//         return true;
+//     });
+// };
+//const inputLetters = 'acati'.split('');
+//const inputLetters = 'aeiou'.split('');
+//console.log(lettersMatch(inputLetters));
+//console.log(lettersMatch('q', 'k', 'b', 's', 'e'));
+
+//Write a function lettersExactMatch that lets you input a five-character string. Put letters with the exact placement in their place, and put a placeholder like . or _ for unknown letters. node index.js exactly a_ie_
+const lettersExactMatch = (letters) => {
+    return wordsJSON.filter(word => {
+        if (word.length !== letters.length) return false;
+        for (let i = 0; i < letters.length; i++) {
+            if (letters[i] !== '_' && letters[i] !== '.' && word[i] !== letters[i]) {
+                return false;
+            }
+        }
+        return true;
+    });
+};
+//console.log(lettersExactMatch('a_ie_'));
+/*
+output:
+[ 'amies', 'alien', 'abies', 'ariel', 'ajies', 'adieu' ]
+*/
+
+
+//Update the function lettersMatch to handle duplicate letters
+
+const lettersMatch = (letters) => {
+    return wordsJSON.filter(word => {
+        for (const letter of letters) {
+            if (!word.includes(letter)) {
+                return false;
+            }
+        }
+        return true;
+    });
+
+};
+//console.log(lettersMatch('q', 'k', 'b', 'k', 'e'));
+
+
+
+//Create a new function that can handle both inputs. 
+//One input for matched letters in the wrong position
+const lettersWrongPositionMatch = (matchedLettersWrongPosition) => {
+    return wordsJSON.filter(word => {
+        for (let i = 0; i < matchedLettersWrongPosition.length; i++) {
+            const [position, letter] = matchedLettersWrongPosition[i];
+            
+            if (word[position] === letter) {
+                return false;
+            }
+        }
+        return true;
+    });
+};
+
+//console.log(lettersWrongPositionMatch([[1, 'l'], [4, 'o']])); 
+
+
+
+//The second input for matched letters in the correct position. node index.js al__a o
+
+const lettersCorrectPositionMatch = (wordPosition) => {
+    const matchedLettersCorrectPosition = [];
+
+    for (let i = 0; i < wordPosition.length; i++) {
+        if (wordPosition[i] !== '_') {
+            matchedLettersCorrectPosition.push([i, wordPosition[i]]);
+        }
+    }
+
+    return wordsJSON.filter(word => {
+        for (let i = 0; i < matchedLettersCorrectPosition.length; i++) {
+            const [position, letter] = matchedLettersCorrectPosition[i];
+            
+            if (word[position] !== letter) {
+                return false;
+            }
+        }
+        return true;
+    });
+};
+
+//console.log(lettersCorrectPositionMatch('al__a'));
+
+//console.log(lettersCorrectPositionMatch([[1, 'l'], [4, 'o']])); 
+
+// const [wordPosition, correctLetters] = process.argv.slice(2);
+// const result = lettersCorrectPositionMatch(wordPosition, correctLetters);
+
+// console.log(result);
+
 
 /*
 .split() method is used to split a string into an array of substrings based on a specified separator and returns the new array.
@@ -186,7 +291,7 @@ console.log(fruits);
 
 
 
-.sort() method sorts the elements of an array in place and returns the sorted array. Sorts elements based on their values and typically arranges them in ascendign order by default. A comparison function can be used asn as an argument. It modifies the original array.
+.sort() method sorts the elements of an array in place and returns the sorted array. Sorts elements based on their values and typically arranges them in ascending order by default. A comparison function can be used as an argument. It modifies the original array.
 
 Numbers: When sorting an array of numbers, .sort() compares the elements as strings by default, which can lead to unexpected results.
 
