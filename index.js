@@ -1,7 +1,6 @@
 const wordsJSON = require("./words.json"); //declare variable, relative path to the file
 //console.log(wordsJSON);
 
-
 //logs all the words 
 //`words` or `arr` param isn't strictly needed in array function
 function allWords(words) {
@@ -15,7 +14,6 @@ output:
   ... 12944 more items
 ]
 */
-
 
 
 //logs the first ten words
@@ -47,6 +45,7 @@ output:
 ]
 */
 
+
 //logs from 0 to x words.
 const firstXWords = (x) => wordsJSON.slice(0, x);
 //console.log(firstXWords(5));
@@ -55,6 +54,7 @@ output:
 [ 'women', 'nikau', 'swack', 'feens', 'fyles' ]
 */
 
+
 //logs from x to y words.
 const subsetOfWords = (x, y) => wordsJSON.slice(x, y);
 //console.log(subsetOfWords(3, 8));
@@ -62,6 +62,7 @@ const subsetOfWords = (x, y) => wordsJSON.slice(x, y);
 output:
 [ 'feens', 'fyles', 'poled', 'clags', 'starn' ]
 */
+
 
 //logs all the words, sorted alphabetically.
 const sortWords = () => {
@@ -75,7 +76,7 @@ const sortWords = () => {
         }
     });
 };
-console.log(sortWords());
+//console.log(sortWords());
 /*
 output:
 [ 'aahed', 'aalii', 'aargh', 'aarti',
@@ -83,10 +84,132 @@ output:
 */
 
 
+//wordsWithQ(): Return all the words that contain the letter q
+//.sort() Not appropriate for this function. Used for sorting elements within an array based on some criteria defined by a comparison function.
+
+const wordsWithQ = wordsJSON.filter(word => word.includes('q'));
+
+//console.log(wordsWithQ);
+/*
+output:
+[ 'qophs', 'query', 'faqir', 'squit', 'qibla', 'quiff', 'quote',
+ ...104 more items
+ ]
+*/
+
+
+
+//findWordsWithLetter(): Takes an argument letter and returns all the words with that matching letter
+
+const findWordsWithLetter = (letter) => {
+    return wordsJSON.filter(word => word.includes(letter));
+};
+
+//console.log(findWordsWithLetter('q'));
+/*
+output:
+[ 'qophs', 'query', 'faqir', 'squit', 'qibla', 'quiff', 'quote',
+ ...104 more items
+ ]
+*/
+
+//console.log(findWordsWithLetter('a'));
+/*
+output:
+[ 'nikau', 'swack', 'clags', 'starn', 'fanos', 'cabin', 'trass',
+ ...5,317 more items
+ ]
+*/
+
+//find a word with the matching letter (find the first word with the matching letter?)
+const findAWordWithLetter = (letter) => {
+    return wordsJSON.find(word => word.includes(letter));
+};
+
+//console.log(findAWordWithLetter("x"));
+//console.log(findAWordWithLetter("q"));
+
+//find a word with more than one of the matching letter
+const findWordWithMultipleLetters = (letter) => {
+    return wordsJSON.find(word => {
+        const count = word.split('').filter(char => char === letter).length;
+        return count > 1;
+    });
+};
+
+//console.log(findWordWithMultipleLetters("e")); // Logs the first word containing more than one 'e'
+
+
+
+//find a word with no matching letters
+const findWordWithNoLetters = (letter) => {
+    return wordsJSON.find(word => !word.includes(letter));
+}
+
+//console.log(findWordWithNoLetters("a"));
 
 
 
 /*
+.split() method is used to split a string into an array of substrings based on a specified separator and returns the new array.
+
+Syntax:
+string.split(separator, limit)
+
+separator (optional): The string or regular expression used to specify where to split the string. If omitted, the entire string will be returned as the only element in the array.
+
+limit (optional): An integer specifying a limit on the number of splits to be found. The result will contain at most limit elements. If limit is omitted or 0, the entire string will be split.
+
+const sentence = 'The quick brown fox jumps over the lazy dog';
+
+const words = sentence.split(' '); // Split by space
+console.log(words);
+// Output: ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+
+const characters = sentence.split(''); // Split by each character
+console.log(characters);
+// Output: ['T', 'h', 'e', ' ', 'q', 'u', 'i', 'c', 'k', ...]
+
+const commaSeparated = 'apple,banana,orange';
+const fruits = commaSeparated.split(','); // Split by comma
+console.log(fruits);
+// Output: ['apple', 'banana', 'orange']
+
+
+
+
+
+
+.find() method returns the first element in the array that satisfies the provided testing function. If no element satisfies the testing function, it returns `undefined`.
+
+
+
+.sort() method sorts the elements of an array in place and returns the sorted array. Sorts elements based on their values and typically arranges them in ascendign order by default. A comparison function can be used asn as an argument. It modifies the original array.
+
+Numbers: When sorting an array of numbers, .sort() compares the elements as strings by default, which can lead to unexpected results.
+
+const numbers = [3, 1, 6, 2, 5];
+numbers.sort(); // Sorts numbers in ascending order: [1, 2, 3, 5, 6]
+
+To sort numbers numerically, you should provide a custom comparison function.
+
+numbers.sort((a, b) => a - b); // Result: [1, 2, 10, 30] (Numerical order)
+
+Strings: When sorting an array of strings, .sort() arranges the elements in lexicographic (dictionary) order by default.
+
+const words = ['banana', 'apple', 'cherry'];
+words.sort(); // Result: ['apple', 'banana', 'cherry']
+
+
+
+
+.filter() method creates a new array with all the elements that pass the test implemented by the provided function. Does not modify the original array; it returns a new array containing only the elements that meet the condition. The provided function should return `true` to include the elment in the new array or `false` to exclude it.
+Strings or Numbers: Whether the elements are strings or numbers, .filter() behaves the same way.
+
+const numbers = [3, 1, 6, 2, 5];
+const filteredNumbers = numbers.filter(num => num > 3); // Returns numbers greater than 3: [6, 5]
+
+
 Notes with Mike:
 
 //logs the first 10 words.
