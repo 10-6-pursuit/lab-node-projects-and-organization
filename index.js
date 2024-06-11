@@ -88,7 +88,6 @@ output:
 //.sort() Not appropriate for this function. Used for sorting elements within an array based on some criteria defined by a comparison function.
 
 const wordsWithQ = wordsJSON.filter(word => word.includes('q'));
-
 //console.log(wordsWithQ);
 /*
 output:
@@ -104,7 +103,6 @@ output:
 const findWordsWithLetter = (letter) => {
     return wordsJSON.filter(word => word.includes(letter));
 };
-
 //console.log(findWordsWithLetter('q'));
 /*
 output:
@@ -112,7 +110,6 @@ output:
  ...104 more items
  ]
 */
-
 //console.log(findWordsWithLetter('a'));
 /*
 output:
@@ -121,13 +118,16 @@ output:
  ]
 */
 
+
+
 //find a word with the matching letter (find the first word with the matching letter?)
 const findAWordWithLetter = (letter) => {
     return wordsJSON.find(word => word.includes(letter));
 };
-
 //console.log(findAWordWithLetter("x"));
 //console.log(findAWordWithLetter("q"));
+
+
 
 //find a word with more than one of the matching letter
 const findWordWithMultipleLetters = (letter) => {
@@ -136,7 +136,6 @@ const findWordWithMultipleLetters = (letter) => {
         return count > 1;
     });
 };
-
 //console.log(findWordWithMultipleLetters("e")); // Logs the first word containing more than one 'e'
 
 
@@ -145,9 +144,12 @@ const findWordWithMultipleLetters = (letter) => {
 const findWordWithNoLetters = (letter) => {
     return wordsJSON.find(word => !word.includes(letter));
 }
-
 //console.log(findWordWithNoLetters("a"));
 
+//Upgrade your functionality
+//Instead of hard-coding the value for `findWordsWithLetter`, instead set it up so the user can input a letter from the terminal. The following would test the letter P with the `findWordsWithLetter` function:
+
+//console.log(findWordsWithLetter(process.argv[2]));
 
 
 /*
