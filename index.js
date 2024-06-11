@@ -20,13 +20,13 @@ function nextTenWords() {
 
 // nextTenWords(wordJSON);
 
-function firstXWord() {
+function firstXWord(x) {
     console.log(wordJSON.slice(0, x))
 }
 
-// firstXWord(wordJSON);
+// firstXWord(3);
 
-function subsetOfWords() {
+function subsetOfWords(x, y) {
     console.log(wordJSON.slice(x, y));
 }
 
