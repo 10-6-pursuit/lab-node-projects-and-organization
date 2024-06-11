@@ -35,3 +35,5 @@ function subsetOfWords() {
 function sortWords() {
     console.log(wordJSON.sort((a, b) => a - b))
 }
+
+sortWords()
